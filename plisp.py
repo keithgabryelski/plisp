@@ -1,7 +1,6 @@
-#!C:/Python25/python.exe
+#!/usr/local/bin/python
 import math, sys, traceback, logging, copy
 from enum import Enum
-from REI.Text.StringTranslator import StringTranslator
 from StringIO import StringIO
 
 __author__  = "Keith Gabryelski <keith@gabryelski.com>"
@@ -1447,12 +1446,12 @@ class Interpreter(object):
 
     #
     def pushContext(self, context):
-        print ">%s" % (["%s!%s" % (c.name, self.printOut2(self.atomTable[c.value or 0]),) for c in context])
+#        print ">%s" % (["%s!%s" % (c.name, self.printOut2(self.atomTable[c.value or 0]),) for c in context])
         self.context.append(context)
 
     def popContext(self):
         context = self.context.pop()
-        print "<%s" % (["%s!%s" % (c.name, self.printOut2(self.atomTable[c.value or 0]),) for c in context])
+#        print "<%s" % (["%s!%s" % (c.name, self.printOut2(self.atomTable[c.value or 0]),) for c in context])
         return context
 
     def pushParameters(self, function):
@@ -1666,7 +1665,7 @@ if __name__ == "__main__":
     #logging.getLogger("lisp.interpreter").setLevel(logging.WARNING)
     #logging.getLogger("lisp.interpreter.mainloop").setLevel(logging.INFO)
     #logging.getLogger("lisp.interpreter.v").setLevel(logging.DEBUG)
-    logging.getLogger("lisp.interpreter.v.trace").setLevel(logging.DEBUG)
+#    logging.getLogger("lisp.interpreter.v.trace").setLevel(logging.DEBUG)
     #logging.getLogger("lisp.interpreter.printout").setLevel(logging.DEBUG)
     #logging.getLogger("lisp.parser").setLevel(logging.DEBUG)
     #logging.getLogger("lisp.parser.lexical").setLevel(logging.INFO)
