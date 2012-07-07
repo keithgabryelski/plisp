@@ -1,26 +1,30 @@
 #!/usr/local/bin/python
 import math, sys, traceback, logging, copy
-from enum import Enum
 from StringIO import StringIO
 
+# originally written by Keith Gabryelski
+# 27 June 2007: version 0.9
+#  7 July 2007: version 1.0 - remove unecessaries, should work out of the box
+
 __author__  = "Keith Gabryelski <keith@gabryelski.com>"
-__status__  = "alpha"
-__version__ = "0.9"
-__date__    = "27 June 2007"
+__status__  = "release"
+__version__ = "1.0"
+__date__    = "7 July 2012"
 
 class Atom(object):
     "An L-Value"
 
     __slots__ = ("slot", "type", "value", "isConstant")
 
-    Type = Enum("Symbol",
-                "Number",
-                "String",
-                "DottedPair",
-                "BuiltinFunction",
-                "BuiltinSpecialForm",
-                "UserDefinedFunction",
-                "UserDefinedSpecialForm")
+    class Type:
+        Symbol = 1
+        Number = 2
+        String = 3
+        DottedPair = 4
+        BuiltinFunction = 5
+        BuiltinSpecialForm = 6
+        UserDefinedFunction = 7
+        UserDefinedSpecialForm = 8
 
     class SNode(object):
         __slots__ = ("car", "cdr")
@@ -1543,8 +1547,18 @@ class Interpreter(object):
                 _logger.debug(">%d: %s" % (n, parameter.name))
 
 
-ParserState = Enum("EOF", "Looking", "InSymbol", "InQuotedString", "InEscape")
-TokenType = Enum("OpenParenthesis", "CloseParenthesis", "Dot", "Quote")
+class ParserState:
+    EOF = 1
+    Looking = 2
+    InSymbol = 3
+    InQuotedString = 4
+    InEscape = 5
+
+class TokenType:
+    OpenParenthesis = 1
+    CloseParenthesis = 2
+    Dot = 3
+    Quote = 4
 
 class LispError(Exception):
     pass
